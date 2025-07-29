@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronDown, Download, Github, Linkedin, Mail } from 'lucide-react';
 import NeuralNetworkCanvas from "./NeuralNetworkCanvas";
+import profileImg from '../assets/profile.jpg'; // ✅ Correct image import
 
 interface HeroProps {
   darkMode: boolean;
@@ -34,7 +35,6 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
       color: string;
     }> = [];
 
-    // Create floating blobs
     for (let i = 0; i < 3; i++) {
       blobs.push({
         x: Math.random() * canvas.width,
@@ -85,10 +85,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none"
-      />
+      <canvas ref={canvasRef} className="absolute inset-0 pointer-events-none" />
       <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 via-blue-500/20 to-teal-500/20" />
       <div className="container mx-auto px-6 relative z-10">
         <motion.div
@@ -97,17 +94,16 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <motion.div
-            className="flex flex-col items-center justify-center mb-6"
-          >
+          <motion.div className="flex flex-col items-center justify-center mb-6">
             <motion.img
-              src="/profile.jpg.png"
+              src={profileImg} // ✅ Correct usage
               alt="Profile"
               className="w-40 h-40 rounded-full border-4 border-white shadow-xl object-cover mb-4 transition-transform duration-300"
               whileHover={{ scale: 1.08, boxShadow: '0 0 32px #7356f1' }}
               style={{ boxShadow: '0 4px 32px 0 #7356f1, 0 1.5px 8px 0 #7356f1' }}
             />
           </motion.div>
+
           <motion.h1
             className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6"
             style={{ color: '#7356f1' }}
@@ -117,6 +113,7 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
           >
             Rohan Rajora
           </motion.h1>
+
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -154,7 +151,6 @@ const Hero: React.FC<HeroProps> = ({ darkMode }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="px-8 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full font-semibold shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-2"
-              style={{ display: 'inline-flex', alignItems: 'center' }}
             >
               <Download size={20} />
               Download Resume
